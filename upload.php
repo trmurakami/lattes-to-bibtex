@@ -22,15 +22,59 @@ if ($_FILES['file']['size'] != 0) {
                 $recordContent[] = 'title   = {'.$dadosBasicosDoTrabalho['@attributes']["TITULO-DO-TRABALHO"].'}';
             }
 
+            if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO-DO-TRABALHO"])) {
+                $recordContent[] = 'year = {'.$dadosBasicosDoTrabalho['@attributes']["ANO-DO-TRABALHO"].'}';
+            }
+
+            if (!empty($dadosBasicosDoTrabalho['@attributes']["DOI"])) {
+                $recordContent[] = 'doi = {'.$dadosBasicosDoTrabalho['@attributes']["DOI"].'}';
+            }
+
             $sha256 = hash('sha256', ''.implode("", $recordContent).'');
 
             $record[] = '@inproceedings{inproceedings'.substr($sha256, 0, 8).',';
-            $record[] = implode(",\\n", $recordContent);
+            $record[] = implode(",\n", $recordContent);
             $record[] = '}';
+
+            $records_array[] = implode("\\n", $record);
 
             unset($recordContent);
         
         }
+
+        // if (!empty($cursor["_source"]['name'])) {
+        //     $recordContent[] = 'title   = {'.$cursor["_source"]['name'].'}';
+        // }
+
+        // if (!empty($cursor["_source"]['author'])) {
+        //     $authorsArray = [];
+        //     foreach ($cursor["_source"]['author'] as $author) {
+        //         $authorsArray[] = $author["person"]["name"];
+        //     }
+        //     $recordContent[] = 'author = {'.implode(" and ", $authorsArray).'}';
+        // }
+
+        // if (!empty($cursor["_source"]['datePublished'])) {
+        //     $recordContent[] = 'year = {'.$cursor["_source"]['datePublished'].'}';
+        // }
+
+        // if (!empty($cursor["_source"]['doi'])) {
+        //     $recordContent[] = 'doi = {'.$cursor["_source"]['doi'].'}';
+        // }
+
+        // if (!empty($cursor["_source"]['publisher']['organization']['name'])) {
+        //     $recordContent[] = 'publisher = {'.$cursor["_source"]['publisher']['organization']['name'].'}';
+        // }
+
+        // if (!empty($cursor["_source"]["releasedEvent"])) {
+        //     $recordContent[] = 'booktitle   = {'.$cursor["_source"]["releasedEvent"].'}';
+        // } else {
+        //     if (!empty($cursor["_source"]["isPartOf"]["name"])) {
+        //         $recordContent[] = 'journal   = {'.$cursor["_source"]["isPartOf"]["name"].'}';
+        //     }
+        // }
+
+
 
         // $trabalhosEmEventosArray = $curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'}->{'TRABALHO-EM-EVENTOS'};
         // foreach ($trabalhosEmEventosArray as $obra) {
@@ -134,12 +178,47 @@ if ($_FILES['file']['size'] != 0) {
     
     }
 
+    if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
+
+        $artigoPublicadoArray = $curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'}->{'ARTIGO-PUBLICADO'};
+        foreach ($artigoPublicadoArray as $obra) {
+            $obra = get_object_vars($obra);
+            $dadosBasicosDoTrabalho = get_object_vars($obra["DADOS-BASICOS-DO-ARTIGO"]);
+            $detalhamentoDoTrabalho = get_object_vars($obra["DETALHAMENTO-DO-ARTIGO"]);
+
+            if (!empty($dadosBasicosDoTrabalho['@attributes']["TITULO-DO-ARTIGO"])) {
+                $recordContent[] = 'title   = {'.$dadosBasicosDoTrabalho['@attributes']["TITULO-DO-ARTIGO"].'}';
+            }
+
+            if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO-DO-ARTIGO"])) {
+                $recordContent[] = 'year = {'.$dadosBasicosDoTrabalho['@attributes']["ANO-DO-ARTIGO"].'}';
+            }
+
+            if (!empty($dadosBasicosDoTrabalho['@attributes']["DOI"])) {
+                $recordContent[] = 'doi = {'.$dadosBasicosDoTrabalho['@attributes']["DOI"].'}';
+            }
+
+
+            $sha256 = hash('sha256', ''.implode("", $recordContent).'');
+
+            $record[] = '@article{article'.substr($sha256, 0, 8).',';
+            $record[] = implode(",\n", $recordContent);
+            $record[] = '}';
+
+            $records_array[] = implode("\\n", $record);
+
+            unset($recordContent);
+
+
+        }
+    }
+
 
     $file="lattes.bib";
     header('Content-type: text/plain');
     header("Content-Disposition: attachment; filename=$file");
 
-    print_r(implode("\\n", $record));
+    print_r(implode("\n",$record));
 
 } else {
 
