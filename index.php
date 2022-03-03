@@ -11,6 +11,7 @@
     <title>Conversor online de XML do Currículo Lattes em formato Bibtex para importação no ORCID</title>
   </head>
   <body>
+      <main>
 
     <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Conversor online de XML do Currículo Lattes em formato Bibtex para importação no ORCID</h1>
@@ -28,20 +29,16 @@
     </div>
   </div>
 
+      </main>
+      <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted"><a href="https://github.com/trmurakami/lattes-to-bibtex">Este conversor</a> é um software livre desenvolvido por <a href="https://github.com/trmurakami">Tiago Murakami</a> para a Biblioteca da Escola de Comunicações e Artes da Universidade de São Paulo</span>
+        </div>
+      </footer>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   </body>
 </html>
-
-
-
-<html>
-
-<body>
-
-
-
-
-</body>
