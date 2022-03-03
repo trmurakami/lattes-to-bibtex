@@ -39,6 +39,7 @@ if ($_FILES['file']['size'] != 0) {
             $records_array[] = implode("\\n", $record);
 
             unset($recordContent);
+            unset($sha256);
         
         }
 
@@ -208,6 +209,7 @@ if ($_FILES['file']['size'] != 0) {
             $records_array[] = implode("\\n", $record);
 
             unset($recordContent);
+            unset($sha256);
 
 
         }
@@ -245,6 +247,7 @@ if ($_FILES['file']['size'] != 0) {
                 $records_array[] = implode("\\n", $record);
     
                 unset($recordContent);
+                unset($sha256);
 
 
                 // $doc["doc"]["type"] = "Work";
@@ -373,6 +376,7 @@ if ($_FILES['file']['size'] != 0) {
                 $records_array[] = implode("\\n", $record);
     
                 unset($recordContent);
+                unset($sha256);
     
                 // $doc["doc"]["type"] = "Work";
                 // $doc["doc"]["tipo"] = "Capítulo de livro publicado";
