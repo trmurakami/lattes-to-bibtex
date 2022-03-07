@@ -22,6 +22,15 @@ if ($_FILES['file']['size'] != 0) {
                 $recordContent[] = 'title   = {'.$dadosBasicosDoTrabalho['@attributes']["TITULO-DO-TRABALHO"].'}';
             }
 
+            if (!empty($obra["AUTORES"])) {
+                $authorsArray = [];
+                foreach ($obra["AUTORES"] as $author) {
+                    $authorsArray[] = $author["NOME-COMPLETO-DO-AUTOR"][0];
+                }
+                $recordContent[] = 'author = {'.implode(" and ", $authorsArray).'}';
+            }
+
+
             if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO-DO-TRABALHO"])) {
                 $recordContent[] = 'year = {'.$dadosBasicosDoTrabalho['@attributes']["ANO-DO-TRABALHO"].'}';
             }
@@ -191,6 +200,14 @@ if ($_FILES['file']['size'] != 0) {
                 $recordContent[] = 'title   = {'.$dadosBasicosDoTrabalho['@attributes']["TITULO-DO-ARTIGO"].'}';
             }
 
+            if (!empty($obra["AUTORES"])) {
+                $authorsArray = [];
+                foreach ($obra["AUTORES"] as $author) {
+                    $authorsArray[] = $author["NOME-COMPLETO-DO-AUTOR"][0];
+                }
+                $recordContent[] = 'author = {'.implode(" and ", $authorsArray).'}';
+            }
+
             if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO-DO-ARTIGO"])) {
                 $recordContent[] = 'year = {'.$dadosBasicosDoTrabalho['@attributes']["ANO-DO-ARTIGO"].'}';
             }
@@ -227,6 +244,14 @@ if ($_FILES['file']['size'] != 0) {
 
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["TITULO-DO-LIVRO"])) {
                     $recordContent[] = 'title   = {'.$dadosBasicosDoTrabalho['@attributes']["TITULO-DO-LIVRO"].'}';
+                }
+
+                if (!empty($obra["AUTORES"])) {
+                    $authorsArray = [];
+                    foreach ($obra["AUTORES"] as $author) {
+                        $authorsArray[] = $author["NOME-COMPLETO-DO-AUTOR"][0];
+                    }
+                    $recordContent[] = 'author = {'.implode(" and ", $authorsArray).'}';
                 }
     
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO"])) {
@@ -356,6 +381,14 @@ if ($_FILES['file']['size'] != 0) {
 
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["TITULO-DO-CAPITULO-DO-LIVRO"])) {
                     $recordContent[] = 'title   = {'.$dadosBasicosDoTrabalho['@attributes']["TITULO-DO-CAPITULO-DO-LIVRO"].'}';
+                }
+
+                if (!empty($obra["AUTORES"])) {
+                    $authorsArray = [];
+                    foreach ($obra["AUTORES"] as $author) {
+                        $authorsArray[] = $author["NOME-COMPLETO-DO-AUTOR"][0];
+                    }
+                    $recordContent[] = 'author = {'.implode(" and ", $authorsArray).'}';
                 }
     
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO"])) {
