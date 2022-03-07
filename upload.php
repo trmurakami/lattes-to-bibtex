@@ -43,6 +43,10 @@ if ($_FILES['file']['size'] != 0) {
                 $recordContent[] = 'publisher = {'.$detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"].'}';
             }
 
+            if (!empty($detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"])) {
+                $recordContent[] = 'pages = {'.$detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"].'-'.$detalhamentoDoTrabalho['@attributes']["PAGINA-FINAL"].'}';
+            }
+
             if (!empty($dadosBasicosDoTrabalho['@attributes']["HOME-PAGE-DO-TRABALHO"])) {
                 $recordContent[] = 'url = {'.str_replace(']', '', str_replace('[', '', $dadosBasicosDoTrabalho['@attributes']["HOME-PAGE-DO-TRABALHO"])).'}';
             }
@@ -107,7 +111,7 @@ if ($_FILES['file']['size'] != 0) {
             }
 
             if (!empty($detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"])) {
-                $recordContent[] = 'pages = {'.$detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"].'-'.$detalhamentoDoTrabalho['@attributes']["PAGINA-FINAL"].' }';
+                $recordContent[] = 'pages = {'.$detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"].'-'.$detalhamentoDoTrabalho['@attributes']["PAGINA-FINAL"].'}';
             }
 
             if (!empty($dadosBasicosDoTrabalho['@attributes']["DOI"])) {
