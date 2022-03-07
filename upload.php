@@ -163,6 +163,14 @@ if ($_FILES['file']['size'] != 0) {
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO"])) {
                     $recordContent[] = 'year = {'.$dadosBasicosDoTrabalho['@attributes']["ANO"].'}';
                 }
+
+                if (!empty($detalhamentoDoTrabalho['@attributes']["NUMERO-DA-EDICAO-REVISAO"])) {
+                    $recordContent[] = 'edition = {'.$detalhamentoDoTrabalho['@attributes']["NUMERO-DA-EDICAO-REVISAO"].'}';
+                }
+
+                if (!empty($detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"])) {
+                    $recordContent[] = 'publisher = {'.$detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"].'}';
+                }
     
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["DOI"])) {
                     $recordContent[] = 'doi = {'.$dadosBasicosDoTrabalho['@attributes']["DOI"].'}';
@@ -201,6 +209,14 @@ if ($_FILES['file']['size'] != 0) {
                         $authorsArray[] = $author["NOME-COMPLETO-DO-AUTOR"][0];
                     }
                     $recordContent[] = 'author = {'.implode(" and ", $authorsArray).'}';
+                }
+
+                if (!empty($detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"])) {
+                    $recordContent[] = 'publisher = {'.$detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"].'}';
+                }
+
+                if (!empty($detalhamentoDoTrabalho['@attributes']["NUMERO-DA-EDICAO-REVISAO"])) {
+                    $recordContent[] = 'edition = {'.$detalhamentoDoTrabalho['@attributes']["NUMERO-DA-EDICAO-REVISAO"].'}';
                 }
     
                 if (!empty($dadosBasicosDoTrabalho['@attributes']["ANO"])) {
