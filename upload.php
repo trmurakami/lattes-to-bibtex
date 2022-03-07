@@ -212,6 +212,26 @@ if ($_FILES['file']['size'] != 0) {
                 $recordContent[] = 'year = {'.$dadosBasicosDoTrabalho['@attributes']["ANO-DO-ARTIGO"].'}';
             }
 
+            if (!empty($detalhamentoDoTrabalho['@attributes']["TITULO-DO-PERIODICO-OU-REVISTA"])) {
+                $recordContent[] = 'journal = {'.$detalhamentoDoTrabalho['@attributes']["TITULO-DO-PERIODICO-OU-REVISTA"].'}';
+            }
+
+            if (!empty($detalhamentoDoTrabalho['@attributes']["VOLUME"])) {
+                $recordContent[] = 'volume = {'.$detalhamentoDoTrabalho['@attributes']["VOLUME"].'}';
+            }
+
+            if (!empty($detalhamentoDoTrabalho['@attributes']["FASCICULO"])) {
+                $recordContent[] = 'number = {'.$detalhamentoDoTrabalho['@attributes']["FASCICULO"].'}';
+            }
+
+            if (!empty($detalhamentoDoTrabalho['@attributes']["SERIE"])) {
+                $recordContent[] = 'number = {'.$detalhamentoDoTrabalho['@attributes']["SERIE"].'}';
+            }
+
+            if (!empty($detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"])) {
+                $recordContent[] = 'pages = {'.$detalhamentoDoTrabalho['@attributes']["PAGINA-INICIAL"].'-'.$detalhamentoDoTrabalho['@attributes']["PAGINA-FINAL"].' }';
+            }
+
             if (!empty($dadosBasicosDoTrabalho['@attributes']["DOI"])) {
                 $recordContent[] = 'doi = {'.$dadosBasicosDoTrabalho['@attributes']["DOI"].'}';
             }
